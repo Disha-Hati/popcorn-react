@@ -1,14 +1,61 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { BG_URL } from '../utils/constant'
+import { validateData } from '../utils/validate';
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../utils/firebase"
 
 const Login = () => {
 
     const[isSignIn,setIsSignIn]=useState(true);
+    const[errorMessage,setErrorMessage]=useState(null);
+
+    const email=useRef(null);
+    const password=useRef(null);
 
     const toggleSignIn=()=>{
         setIsSignIn(!isSignIn);
     }
+
+
+    const handleButtonClick=()=>{
+      //validate the form data
+      const message=validateData(email.current.value,password.current.value);
+      setErrorMessage(message);
+
+      if(message) return; //not valid-> no need to login
+
+      //sign in/sign up
+      if(!isSignIn){
+        //sign up
+          createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
+              .then((userCredential) => {
+                    const user = userCredential.user;
+                      })
+              .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode+"-"+errorMessage);
+              });
+        
+      }else{
+        //sign in
+
+        signInWithEmailAndPassword(auth, email.current.value,password.current.value)
+              .then((userCredential) => {
+                      const user = userCredential.user;
+                })
+                .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        setErrorMessage(errorCode+"-"+errorMessage);
+              });
+
+      }
+
+    }
+
+
   return (
     <div>
       <Header/>
@@ -17,12 +64,13 @@ const Login = () => {
         <img src={BG_URL} alt="bg-img"/>
       </div>
 
-      <form className='w-1/4 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-85'>
+      <form onSubmit={(e)=>e.preventDefault()} className='w-1/4 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-85'>
       <h1 className='font-bold text-3xl py-4'>{isSignIn?"Sign In":"Sign Up"} </h1>
         {!isSignIn &&<input type="text" placeholder='Full Name' className='p-4 my-4 w-full rounded-lg bg-gray-700'/>}
-        <input type="text" placeholder='Email Address' className='p-4 my-4 w-full rounded-lg bg-gray-700'/>
-        <input type="password" placeholder='Password' className='p-4 my-4 w-full rounded-lg bg-gray-700'/>
-        <button  className='p-4 my-6 bg-red-800 w-full rounded-lg'>{isSignIn?"Sign In":"Sign Up"}</button>
+        <input type="text" placeholder='Email Address'ref={email} className='p-4 my-4 w-full rounded-lg bg-gray-700'/>
+        <input type="password" placeholder='Password' ref={password} className='p-4 my-4 w-full rounded-lg bg-gray-700'/>
+        <p className='font-bold text-red-800 py-2'>{errorMessage}</p>
+        <button  className='p-4 my-6 bg-red-800 w-full rounded-lg' onClick={handleButtonClick}>{isSignIn?"Sign In":"Sign Up"}</button>
         <p className='py-4 hover:cursor-pointer ' onClick={toggleSignIn}>{isSignIn?"New to Netflix? Sign up Now!":"Already a Member?Sign in Now!"}</p>
       </form>
     </div>
