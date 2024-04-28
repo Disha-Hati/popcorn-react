@@ -10,6 +10,7 @@ Popcorn is a Netflix clone with an added feature powered by GPT (Generative Pre-
 - **Routing:** React Router DOM is used for client-side routing, enabling navigation between different pages of the application without full page reloads.
 - **State Management:** Redux Toolkit is employed for state management, offering a convenient way to manage application state and handle complex data flows.
 - **Google Firebase:** for seamless authentication and data storage solutions.
+-**TMDB API:** to fetch real-time movies data from backend.
 - **OpenAI** for the groundbreaking GPT technology that enhances user experience on Netflix GPT.
 
 **UI Features:**
