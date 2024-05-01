@@ -50,8 +50,8 @@ const Header = () => {
     <div className='absolute px-8 w-screen py-2 bg-gradient-to-br from-black z-10 flex justify-between'>
       <img className='w-56' src={POPCORN_LOGO} alt="header-logo"/>
       { user && ( <div className='flex p-2'>
-        <img className='w-12 h-12' alt="user-icon" src={user?.photoURL}/>
-        <button onClick={handleSignOut} className='bg-red-600 rounded-lg p-2 m-2 text-white font-bold'>Sign Out</button>
+        <img className='w-11 h-10' alt="user-icon" src={user?.photoURL}/>
+        <button onClick={handleSignOut} className='text-white font-bold bg-red-600 px-2 h-10 rounded-lg ml-2'>Sign Out</button>
       </div>)
       }
     </div>
