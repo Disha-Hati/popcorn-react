@@ -9,9 +9,9 @@ Popcorn is a Netflix clone with an added feature powered by GPT (Generative Pre-
 - **CSS:** Tailwind CSS is utilized for styling, providing a utility-first approach to styling components and layouts.
 - **Routing:** React Router DOM is used for client-side routing, enabling navigation between different pages of the application without full page reloads.
 - **State Management:** Redux Toolkit is employed for state management, offering a convenient way to manage application state and handle complex data flows.
--**Custom Hooks:** Custom hooks for fetching the movies from the TMDB API.
+- **Custom Hooks:** Custom hooks for fetching the movies from the TMDB API.
 - **Google Firebase:** for seamless authentication and data storage solutions.
--**TMDB API:** to fetch real-time movies data from backend.
+- **TMDB API:** to fetch real-time movies data from backend.
 - **OpenAI** for the groundbreaking GPT technology that enhances user experience on Netflix GPT.
 
 **UI Features:**
@@ -19,10 +19,11 @@ Popcorn is a Netflix clone with an added feature powered by GPT (Generative Pre-
 - **Browse Page:** After authentication, users are directed to the Browse Page which showcases a dynamic selection of movies.
     - **Main Movie:** Features a prominent movie with a trailer playing in the background, accompanied by its title and description.(Using Youtube Autoplay and mute features).
     - **Other Movie Suggestions:** Provides additional movie suggestions categorized by language or genre.
+- **Responsiveness:** The app is responsive. 
 
 **Enhanced Feature: GPT Integration**
 - **Search Bar:** Utilizes GPT technology to offer personalized movie suggestions based on mood, genre, and language. Users can input their preferences into the search bar, and GPT will generate relevant movie recommendations tailored to their criteria.
--**Responsiveness:** The app is responsive. 
+
 
 **Component Architecture**
 - Header
