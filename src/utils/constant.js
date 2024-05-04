@@ -14,5 +14,6 @@ export const API_options = {
 
   export const TMDB_IMG_Poster="https://image.tmdb.org/t/p/w500/";
 
-  export const GPT_API_KEY="AABB";
+  export const GPT_API_KEY= process.env.REACT_APP_GPT_API_KEY;
+
   

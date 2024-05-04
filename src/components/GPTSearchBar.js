@@ -6,12 +6,18 @@ const GPTSearchBar = () => {
     const searchText=useRef(null);
 
     const handleGPTSearchButton=async ()=>{
+
+        const gptQuery="Act as a Movie Recommendation system and suggest some movies for the query:"+searchText.current.value+".Only give me 5 movies, comma separated like the Example given ahead. Example:Hera,Pheri,Sum,Com,Golmaal";
        const gptResults= await openai.chat.completions.create({
-            messages: [{ role: 'user', content: searchText.current.value }],
+            messages: [{ role: 'user', content: gptQuery }],
             model: 'gpt-3.5-turbo',
           });
 
-          console.log(gptResults.choices);
+          if(!gptResults.choices){
+            //Error
+          }
+
+          console.log(gptResults.choices[0]?.message.content );
     }
 
   return (
